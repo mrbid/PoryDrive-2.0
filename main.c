@@ -22,9 +22,6 @@
         Scroll = Zoom in/out
     
     Notes:
-        This is not wayland proof, needs mouse locking without using glfwSetCursorPos().
-        But the web version is fine, does use mouse locking.
-
         The predecessors where different;
         https://github.com/mrbid/porydrive
         https://github.com/PoryDrive/PoryDriveFNN (this was my favorite version)
