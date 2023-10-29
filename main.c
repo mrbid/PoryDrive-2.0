@@ -6,16 +6,18 @@
         PoryDrive, a simple 3D driving game where you have to catch Porygon!
 
     Keyboard:
-        ESCAPE = Focus/Unfocus Mouse Look
+        ESCAPE = Unlock Mouse
+        N = New Game and Car Color
+        
+        W,A,S,D = Drive Car
+        Space = Brake
+        L-Shift = Boost
+        
+        C = Random Car Colors
+        R = Accelerate/step DNA color peel
         F = FPS to console
         P = Player stats to console
-        N = New Game
-        W = Drive Forward
-        A = Turn Left
-        S = Drive Backward
-        D = Turn Right
-        Space = Brakes
-        LShift = Boost
+        O = Toggle auto drive
 
     Mouse:
         RIGHT CLICK/MOUSE4 = Zoom Snap Close/Ariel
