@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+	<id type="desktop">porydrive.desktop</id>
+	<metadata_license>CC-BY-4.0</metadata_license>
+	<project_license>GPL-2.0-only</project_license>
+	<name>PoryDrive</name>
+	<summary>A car game where you must catch Porygon!</summary>
+	<description>
+		<p>Drive around and "collect" Porygon, each time you collect a Porygon a new one will randomly spawn somewhere on the map. A Porygon colliding with a purple cube will cause it to light up blue, this can help you find them. Upon right clicking the mouse you will switch between Ariel and Close views, in the Ariel view it is easier to see which of the purple cubes that the Porygon is colliding with. You can coast the side of collisions to speed up the recharging of boost.</p>
+		<p>Mouse locks when you click on the window, press ESCAPE to unlock the mouse.</p>
+		<ul>
+			<li>N = New Game and Car Color</li>
+			<li>W,A,S,D = Drive Car</li>
+			<li>Space   = Brake</li>
+			<li>L-Shift = Boost</li>
+			<li>RIGHT CLICK/MOUSE4 = Zoom Snap Close/Ariel</li>
+			<li>Mouse Scroll = Zoom in/out</li>
+			<li>C = Random Car Colors</li>
+			<li>R = Accelerate/step DNA color peel</li>
+			<li>F = FPS to console</li>
+			<li>P = Player stats to console</li>
+			<li>O = Toggle auto drive</li>
+		</ul>
+	</description>
+	<screenshots>
+		<screenshot>https://raw.githubusercontent.com/mrbid/porydrive/main/screenshot.png</screenshot>
+	</screenshots>
+	<url type="homepage">https://mrbid.github.io/porydrive/</url>
+	<releases>
+		<release version="3.0" date="2023-10-29" />
+	</releases>
+	<content_rating type="oars-1.0" />
+</application>
