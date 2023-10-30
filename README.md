@@ -2,7 +2,9 @@
 
 **Play Online:** https://mrbid.github.io/porydrive
 
-How 3D assets are converted from ASCII PLY to C Header files: https://gist.github.com/mrbid/cc1141c5476af0a262eaeaf45f799992
+**Flathub:** https://flathub.org/apps/com.voxdsp.PoryDrive
+
+How 3D assets are converted from ASCII PLY to C Header files: [assets/ptf.c](assets/ptf.c)
 
 ## input
 *  **ESCAPE** = Unlock Mouse
