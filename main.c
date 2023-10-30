@@ -720,12 +720,12 @@ void newGame(unsigned int seed)
     // random car body colors
     if(seed != 1337)
     {
-        const f32 nbc1 = randf();
-        const f32 nbc2 = randf();
-        const f32 nbc3 = randf();
-        const f32 nsc1 = randf();
-        const f32 nsc2 = randf();
-        const f32 nsc3 = randf();
+        const f32 nbc1 = esRandFloat(0.f, 1.f);
+        const f32 nbc2 = esRandFloat(0.f, 1.f);
+        const f32 nbc3 = esRandFloat(0.f, 1.f);
+        const f32 nsc1 = esRandFloat(0.f, 1.f);
+        const f32 nsc2 = esRandFloat(0.f, 1.f);
+        const f32 nsc3 = esRandFloat(0.f, 1.f);
         const uint maxv = body_numvert*3;
         for(uint v = 0; v < maxv; v+=3)
         {
@@ -1095,13 +1095,13 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
         else if(key == GLFW_KEY_C)
         {
-            srandf(t*100.0);
-            const f32 nbc1 = randf();
-            const f32 nbc2 = randf();
-            const f32 nbc3 = randf();
-            const f32 nsc1 = randf();
-            const f32 nsc2 = randf();
-            const f32 nsc3 = randf();
+            srand(t*100.0);
+            const f32 nbc1 = esRandFloat(0.f, 1.f);
+            const f32 nbc2 = esRandFloat(0.f, 1.f);
+            const f32 nbc3 = esRandFloat(0.f, 1.f);
+            const f32 nsc1 = esRandFloat(0.f, 1.f);
+            const f32 nsc2 = esRandFloat(0.f, 1.f);
+            const f32 nsc3 = esRandFloat(0.f, 1.f);
             const uint maxv = body_numvert*3;
             for(uint v = 0; v < maxv; v+=3)
             {
@@ -1291,6 +1291,9 @@ int main(int argc, char** argv)
     printf("ad_maxspeed_reductor 0.5\n");
     printf("----\n");
 #endif
+    printf("https://notabug.org/Vandarin/PoryDrive\n");
+    printf("https://github.com/mrbid/PoryDrive-2.0\n");
+    printf("https://flathub.org/apps/com.voxdsp.PoryDrive\n");
     printf("https://snapcraft.io/porydrive\n");
     printf("https://github.com/mrbid/porydrive\n");
     printf("https://github.com/PoryDrive/PoryDriveFNN\n");
@@ -1347,31 +1350,7 @@ int main(int argc, char** argv)
     esBind(GL_ARRAY_BUFFER, &mdlBody.vid, body_vertices, sizeof(body_vertices), GL_STATIC_DRAW);
     esBind(GL_ARRAY_BUFFER, &mdlBody.nid, body_normals, sizeof(body_normals), GL_STATIC_DRAW);
     esBind(GL_ELEMENT_ARRAY_BUFFER, &mdlBody.iid, body_indices, sizeof(body_indices), GL_STATIC_DRAW);
-    esBind(GL_ARRAY_BUFFER, &mdlBodyColors2, body_colors2, sizeof(body_colors2), GL_STATIC_DRAW);    
-    // srandf(time(0));
-    // bc1 = randf(), bc2 = randf(), bc3 = randf();
-    // sc1 = randf(), sc2 = randf(), sc3 = randf();
-    // const uint maxv = body_numvert*3;
-    // for(uint v = 0; v < maxv; v+=3)
-    // {
-    //     if( body_colors[v] == 0.49f && // seats
-    //         body_colors[v+1] == 0.0824f &&
-    //         body_colors[v+2] == 0.0824f )
-    //     {
-    //         body_colors[v]   = sc1;
-    //         body_colors[v+1] = sc2;
-    //         body_colors[v+2] = sc3;
-    //     }
-
-    //     if( body_colors[v] == 0.906f && // body
-    //         body_colors[v+1] == 0.f &&
-    //         body_colors[v+2] == 0.f )
-    //     {
-    //         body_colors[v]   = bc1;
-    //         body_colors[v+1] = bc2;
-    //         body_colors[v+2] = bc3;
-    //     }
-    // }
+    esBind(GL_ARRAY_BUFFER, &mdlBodyColors2, body_colors2, sizeof(body_colors2), GL_STATIC_DRAW);
     bc1 = 0.906f, bc2 = 0.f, bc3 = 0.f;
     sc1 = 0.49f, sc2 = 0.0824f, sc3 = 0.0824f;
     esBind(GL_ARRAY_BUFFER, &mdlBody.cid, body_colors, sizeof(body_colors), GL_STATIC_DRAW);
