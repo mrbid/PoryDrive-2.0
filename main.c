@@ -823,14 +823,6 @@ void main_loop()
             else
                 sr = 0.f;
         }
-
-        f32 tacc = acceleration;
-        if(keystate[5] == 1 && bs > 0.f && bss != 0.f) // boost
-        {
-            bs -= t-bss;
-            bss = t;
-            tacc *= 14.f;
-        }
         
         if(keystate[4] == 1)
         {
@@ -840,6 +832,20 @@ void main_loop()
         {
             if(keystate[2] == 1)
             {
+                f32 tacc = acceleration;
+                if(keystate[5] == 1 && bs > 0.f && bss != 0.f) // boost
+                {
+                    bs -= t-bss;
+                    bss = t;
+                    tacc *= 14.f;
+                }
+                else if(keystate[5] == 1 && bss == 0.f)
+                {
+                    bss = t;
+                }
+                if(bs < 0.f){bs = 0.f;}
+                //printf("boost: %g\n", bs);
+
                 vec inc;
                 sp += tacc;
                 vMulS(&inc, pd, tacc);
@@ -849,8 +855,8 @@ void main_loop()
             if(keystate[3] == 1)
             {    
                 vec inc;
-                sp -= tacc;
-                vMulS(&inc, pd, -tacc);
+                sp -= acceleration;
+                vMulS(&inc, pd, -acceleration);
                 vAdd(&pv, pv, inc);
             }
         }
@@ -1033,12 +1039,12 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     // control
     if(action == GLFW_PRESS)
     {
-        if(key == GLFW_KEY_A){ keystate[0] = 1; keystate[1] = 0; }
-        else if(key == GLFW_KEY_D){ keystate[1] = 1; keystate[0] = 0; }
-        else if(key == GLFW_KEY_W){ keystate[2] = 1; }
-        else if(key == GLFW_KEY_S){ keystate[3] = 1; }
+        if(key == GLFW_KEY_A || key == GLFW_KEY_LEFT){ keystate[0] = 1; keystate[1] = 0; }
+        else if(key == GLFW_KEY_D || key == GLFW_KEY_RIGHT){ keystate[1] = 1; keystate[0] = 0; }
+        else if(key == GLFW_KEY_W || key == GLFW_KEY_UP){ keystate[2] = 1; }
+        else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN){ keystate[3] = 1; }
         else if(key == GLFW_KEY_SPACE){ keystate[4] = 1; }
-        else if(key == GLFW_KEY_LEFT_SHIFT){ keystate[5] = 1; bss = t; }
+        else if(key == GLFW_KEY_LEFT_SHIFT){ keystate[5] = 1; }
 
         // new game
         else if(key == GLFW_KEY_N)
@@ -1149,10 +1155,11 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     }
     else if(action == GLFW_RELEASE)
     {
-        if(key == GLFW_KEY_A){ keystate[0] = 0; }
-        else if(key == GLFW_KEY_D){ keystate[1] = 0; }
-        else if(key == GLFW_KEY_W){ keystate[2] = 0; }
-        else if(key == GLFW_KEY_S){ keystate[3] = 0; }
+        if(key == GLFW_KEY_A || key == GLFW_KEY_LEFT){ keystate[0] = 0; }
+        else if(key == GLFW_KEY_D || key == GLFW_KEY_RIGHT){ keystate[1] = 0; }
+        else if(key == GLFW_KEY_W || key == GLFW_KEY_UP){ keystate[2] = 0; }
+        else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN){ keystate[3] = 0; }
+
         else if(key == GLFW_KEY_SPACE){ keystate[4] = 0; }
         else if(key == GLFW_KEY_LEFT_SHIFT){ keystate[5] = 0; bss = 0.f; }
     }
