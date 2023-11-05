@@ -36,4 +36,4 @@ modules:
     sources:
       - type: git
         url: https://notabug.org/Vandarin/PoryDrive.git
-        commit: cce2c19a85031793a1f694094385b8042486ac35
+        commit: 32714acd87be886b1fe0adaa1660ce771ffd40a7
