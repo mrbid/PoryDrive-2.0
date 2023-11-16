@@ -1305,7 +1305,7 @@ int main(int argc, char** argv)
     printf("https://github.com/mrbid/porydrive\n");
     printf("https://github.com/PoryDrive/PoryDriveFNN\n");
     printf("----\n");
-    printf("BMW Model is made by KrStolorz (https://sketchfab.com/KrStolorz)\n");
+    printf("BMW Model is made by Krzysztof Stolorz (KrStolorz) (https://sketchfab.com/KrStolorz)\n");
     printf("----\n");
     printf("%s\n", glfwGetVersionString());
     printf("----\n");
