@@ -1044,7 +1044,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         else if(key == GLFW_KEY_W || key == GLFW_KEY_UP){ keystate[2] = 1; }
         else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN){ keystate[3] = 1; }
         else if(key == GLFW_KEY_SPACE){ keystate[4] = 1; }
-        else if(key == GLFW_KEY_LEFT_SHIFT){ keystate[5] = 1; }
+        else if(key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_CONTROL){ keystate[5] = 1; }
 
         // new game
         else if(key == GLFW_KEY_N)
@@ -1161,7 +1161,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN){ keystate[3] = 0; }
 
         else if(key == GLFW_KEY_SPACE){ keystate[4] = 0; }
-        else if(key == GLFW_KEY_LEFT_SHIFT){ keystate[5] = 0; bss = 0.f; }
+        else if(key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_CONTROL){ keystate[5] = 0; bss = 0.f; }
     }
 }
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -1263,7 +1263,7 @@ int main(int argc, char** argv)
     printf("S = Drive Backward\n");
     printf("D = Turn Right\n");
     printf("Space = Brake\n");
-    printf("L-Shift = Boost\n");
+    printf("L-Shift/R-CTRL = Boost\n");
     printf("----\n");
     printf("~ Mouse Input:\n");
     printf("RIGHT/MOUSE4 = Zoom Snap Close/Ariel\n");
@@ -1304,6 +1304,8 @@ int main(int argc, char** argv)
     printf("https://snapcraft.io/porydrive\n");
     printf("https://github.com/mrbid/porydrive\n");
     printf("https://github.com/PoryDrive/PoryDriveFNN\n");
+    printf("----\n");
+    printf("BMW Model is made by KrStolorz (https://sketchfab.com/KrStolorz)\n");
     printf("----\n");
     printf("%s\n", glfwGetVersionString());
     printf("----\n");
