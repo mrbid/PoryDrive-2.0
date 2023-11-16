@@ -1,6 +1,7 @@
 /*
 
     https://downloadfree3d.com/3d-models/vehicles/car/bmw-e34/
+    BMW Model is made by KrStolorz (https://sketchfab.com/KrStolorz)
     with significant mesh fixes by James William Fletcher
 
 */

@@ -1,7 +1,8 @@
 /*
 
     https://downloadfree3d.com/3d-models/vehicles/car/bmw-e34/
-
+    BMW Model is made by KrStolorz (https://sketchfab.com/KrStolorz)
+    
 */
 #ifndef wheel_H
 #define wheel_H
