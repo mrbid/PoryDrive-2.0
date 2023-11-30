@@ -50,10 +50,6 @@
 #define GLFW_INCLUDE_NONE
 #include "inc/glfw3.h"
 
-#ifndef __x86_64__
-    #define NOSSE
-#endif
-
 #include "inc/esAux4.h"
 
 #include "inc/res.h"
@@ -68,16 +64,13 @@
 // globals
 //*************************************
 GLFWwindow* window;
-uint winw = 1024;
-uint winh = 768;
+uint winw = 1024, winh = 768;
 double t = 0;   // time
 f32 dt = 0;     // delta time
 double fc = 0;  // frame count
 double lfct = 0;// last frame count time
 f32 aspect;
-double x,y,lx,ly;
-double rww, ww, rwh, wh, ww2, wh2;
-double uw, uh, uw2, uh2; // normalised pixel dpi
+double x,y,lx,ly,ww,wh;
 
 // render state id's
 GLint projection_id;
@@ -1039,12 +1032,13 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     // control
     if(action == GLFW_PRESS)
     {
-        if(key == GLFW_KEY_A || key == GLFW_KEY_LEFT){ keystate[0] = 1; keystate[1] = 0; }
-        else if(key == GLFW_KEY_D || key == GLFW_KEY_RIGHT){ keystate[1] = 1; keystate[0] = 0; }
-        else if(key == GLFW_KEY_W || key == GLFW_KEY_UP){ keystate[2] = 1; }
-        else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN){ keystate[3] = 1; }
-        else if(key == GLFW_KEY_SPACE){ keystate[4] = 1; }
-        else if(key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_CONTROL){ keystate[5] = 1; }
+        if(     key == GLFW_KEY_A || key == GLFW_KEY_LEFT)  { keystate[0] = 1; keystate[1] = 0; }
+        else if(key == GLFW_KEY_D || key == GLFW_KEY_RIGHT) { keystate[1] = 1; keystate[0] = 0; }
+        else if(key == GLFW_KEY_W || key == GLFW_KEY_UP)    { keystate[2] = 1; }
+        else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN)  { keystate[3] = 1; }
+        else if(key == GLFW_KEY_SPACE)                      { keystate[4] = 1; }
+        else if(key == GLFW_KEY_LEFT_SHIFT ||
+                key == GLFW_KEY_RIGHT_CONTROL)              { keystate[5] = 1; }
 
         // new game
         else if(key == GLFW_KEY_N)
@@ -1077,7 +1071,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         }
 
         // toggle mouse focus
-        if(key == GLFW_KEY_ESCAPE)
+        else if(key == GLFW_KEY_ESCAPE)
         {
             focus_cursor = 0;
 #ifndef WEB
@@ -1155,22 +1149,18 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     }
     else if(action == GLFW_RELEASE)
     {
-        if(key == GLFW_KEY_A || key == GLFW_KEY_LEFT){ keystate[0] = 0; }
-        else if(key == GLFW_KEY_D || key == GLFW_KEY_RIGHT){ keystate[1] = 0; }
-        else if(key == GLFW_KEY_W || key == GLFW_KEY_UP){ keystate[2] = 0; }
-        else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN){ keystate[3] = 0; }
-
-        else if(key == GLFW_KEY_SPACE){ keystate[4] = 0; }
-        else if(key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_CONTROL){ keystate[5] = 0; bss = 0.f; }
+        if(     key == GLFW_KEY_A || key == GLFW_KEY_LEFT)  { keystate[0] = 0; }
+        else if(key == GLFW_KEY_D || key == GLFW_KEY_RIGHT) { keystate[1] = 0; }
+        else if(key == GLFW_KEY_W || key == GLFW_KEY_UP)    { keystate[2] = 0; }
+        else if(key == GLFW_KEY_S || key == GLFW_KEY_DOWN)  { keystate[3] = 0; }
+        else if(key == GLFW_KEY_SPACE)                      { keystate[4] = 0; }
+        else if(key == GLFW_KEY_LEFT_SHIFT ||
+                key == GLFW_KEY_RIGHT_CONTROL)              { keystate[5] = 0; bss = 0.f; }
     }
 }
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    if(yoffset < 0)
-        zoom += 0.06f * zoom;
-    else
-        zoom -= 0.06f * zoom;
-    
+    if(yoffset < 0){zoom += 0.06f * zoom;}else{zoom -= 0.06f * zoom;}
     if(zoom > -0.11f){zoom = -0.11f;}
 }
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
@@ -1187,34 +1177,19 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
         }
         if(button == GLFW_MOUSE_BUTTON_4 || button == GLFW_MOUSE_BUTTON_RIGHT)
         {
-            if(zoom != -0.3f)
-                zoom = -0.3f;
-            else
-                zoom = -3.3f;
+            if(zoom != -0.3f){zoom = -0.3f;}else{zoom = -3.3f;}
         }
     }
 }
 void window_size_callback(GLFWwindow* window, int width, int height)
 {
-    winw = width;
-    winh = height;
-
+    winw = width, winh = height;
     glViewport(0, 0, winw, winh);
     aspect = (f32)winw / (f32)winh;
-    ww = winw;
-    wh = winh;
-    rww = 1/ww;
-    rwh = 1/wh;
-    ww2 = ww/2;
-    wh2 = wh/2;
-    uw = (double)aspect / ww;
-    uh = 1 / wh;
-    uw2 = (double)aspect / ww2;
-    uh2 = 1 / wh2;
-
+    ww = winw, wh = winh;
     mIdent(&projection);
     mPerspective(&projection, 60.0f, aspect, 0.01f, FAR_DISTANCE);
-    glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*) &projection.m[0][0]);
+    glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*)&projection.m[0][0]);
 }
 #ifdef WEB
 EM_BOOL emscripten_resize_event(int eventType, const EmscriptenUiEvent *uiEvent, void *userData)
@@ -1247,7 +1222,7 @@ int main(int argc, char** argv)
     printf("James William Fletcher (github.com/mrbid)\n");
     printf("----\n");
 #ifndef WEB
-    printf("Three command line arguments, msaa 0-16.\n");
+    printf("One command line argument, msaa 0-16.\n");
     printf("e.g; ./porydrive 16\n");
     printf("----\n");
 #endif
@@ -1305,7 +1280,7 @@ int main(int argc, char** argv)
     printf("https://github.com/mrbid/porydrive\n");
     printf("https://github.com/PoryDrive/PoryDriveFNN\n");
     printf("----\n");
-    printf("BMW Model is made by Krzysztof Stolorz (KrStolorz) (https://sketchfab.com/KrStolorz)\n");
+    printf("BMW E34 Model is made by Krzysztof Stolorz (KrStolorz) (https://sketchfab.com/KrStolorz)\n");
     printf("----\n");
     printf("%s\n", glfwGetVersionString());
     printf("----\n");
@@ -1328,9 +1303,9 @@ int main(int argc, char** argv)
         exit(EXIT_FAILURE);
     }
     const GLFWvidmode* desktop = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    glfwSetWindowPos(window, (desktop->width/2)-(winw/2), (desktop->height/2)-(winh/2)); // center window on desktop
 #ifndef WEB
-    glfwSetCursorPos(window, (desktop->width/2)-(winw/2), (desktop->height/2)-(winh/2));
+    glfwSetWindowPos(window, (desktop->width/2)-(winw/2), (desktop->height/2)-(winh/2)); // center window on desktop
+    glfwSetCursorPos(window, (desktop->width/2)-(winw/2), (desktop->height/2)-(winh/2)); // center cursor in window
     glfwGetCursorPos(window, &lx, &ly);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     // if(glfwRawMouseMotionSupported() == GLFW_TRUE){glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);}
@@ -1345,11 +1320,6 @@ int main(int argc, char** argv)
 
     // set icon
     glfwSetWindowIcon(window, 1, &(GLFWimage){16, 16, (unsigned char*)&icon_image.pixel_data});
-
-//*************************************
-// projection
-//*************************************
-    window_size_callback(window, winw, winh);
 
 //*************************************
 // bind vertex and index buffers
@@ -1413,6 +1383,7 @@ int main(int argc, char** argv)
     shadeLambert3(&position_id, &projection_id, &modelview_id, &lightpos_id, &normal_id, &color_id, &opacity_id);
     glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*) &projection.m[0][0]);
     glUniform3f(lightpos_id, lightpos.x, lightpos.y, lightpos.z);
+    window_size_callback(window, winw, winh);
 
 //*************************************
 // execute update / render loop
@@ -1423,20 +1394,14 @@ int main(int argc, char** argv)
     loadConfig(0);
 #endif
     newGame(NEWGAME_SEED);
-
-    // reset
     t = glfwGetTime();
     lfct = t;
 
 #ifdef WEB
-    // resize event
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, NULL, EM_FALSE, emscripten_resize_event);
-
-    // event loop
     emscripten_set_main_loop(main_loop, 0, 1);
 #else
-    while(!glfwWindowShouldClose(window))
-        main_loop();
+    while(!glfwWindowShouldClose(window)){main_loop();}
 #endif
 
     // end
