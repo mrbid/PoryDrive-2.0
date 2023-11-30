@@ -1,4 +1,5 @@
 all:
+	cc assets/ptf.c -lm -Ofast -o assets/ptf
 	mkdir -p release
 	cc main.c glad_gl.c -I inc -Ofast -lglfw -lm -o release/porydrive
 	strip --strip-unneeded release/porydrive
@@ -16,4 +17,8 @@ run:
 	emrun bin/index.html
 
 clean:
-	rm -r release
+	rm -f -r release
+	rm -f assets/ptf
+	rm -f bin/index.html
+	rm -f bin/index.js
+	rm -f bin/index.wasm
