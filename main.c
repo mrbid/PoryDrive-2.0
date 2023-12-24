@@ -987,7 +987,7 @@ void main_loop()
     }
 
     mIdent(&view);
-    mTranslate(&view, 0.f, -0.033f, zoom);
+    mSetPos(&view, (vec){0.f, -0.033f, zoom});
     mRotate(&view, yrot, 1.f, 0.f, 0.f);
     mRotate(&view, xrot, 0.f, 0.f, 1.f);
     mTranslate(&view, -pp.x, -pp.y, -pp.z);
