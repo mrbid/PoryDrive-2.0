@@ -1,6 +1,8 @@
 * **Play Online:** https://mrbid.github.io/porydrive
 * **Flathub:** https://flathub.org/apps/com.voxdsp.PoryDrive
-* How 3D assets are converted from ASCII PLY to C Header files: [assets/ptf.c](assets/ptf.c)
+* **Windows:** https://notabug.org/attachments/d49923d5-230c-408a-9440-693ca8462bb6
+
+How 3D assets are converted from ASCII PLY to C Header files: [assets/ptf.c](assets/ptf.c)
 
 ## input
 *  **ESCAPE** = Unlock Mouse
@@ -66,4 +68,5 @@ ad_maxspeed_reductor 0.5
 - `ad_maxspeed_reductor` - the rate at which the speed reduces as the car approaches the porygon with respect to `ad_min_speedswitch`.
 
 ## attrib
-* BMW E34 Model is made by Krzysztof Stolorz (KrStolorz) (https://sketchfab.com/KrStolorz)
+* BMW E34 Model is made by [Krzysztof Stolorz](https://sketchfab.com/KrStolorz) (KrStolorz)
+* I am using icons from [Forrest Walter](http://www.forrestwalter.com).
