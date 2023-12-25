@@ -1,5 +1,3 @@
-*Mirrored From: https://notabug.org/Vandarin/PoryDrive*
-
 * **Play Online:** https://mrbid.github.io/porydrive
 * **Flathub:** https://flathub.org/apps/com.voxdsp.PoryDrive
 * How 3D assets are converted from ASCII PLY to C Header files: [assets/ptf.c](assets/ptf.c)
