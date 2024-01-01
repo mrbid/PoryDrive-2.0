@@ -1,3 +1,5 @@
+![Screenshot of PoryDrive 2.0](https://dashboard.snapcraft.io/site_media/appmedia/2023/11/Screenshot_2023-11-01_21-57-27.png)
+
 * **Play Online:** https://mrbid.github.io/porydrive
 * **Flathub:** https://flathub.org/apps/com.voxdsp.PoryDrive
 * **Windows:** [PoryDrive_win.zip](https://github.com/mrbid/PoryDrive-2.0/releases/download/windows/PoryDrive_win.zip)
